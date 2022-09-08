@@ -1,0 +1,19 @@
+{
+  "name": "family-health-api",
+  "version": "1.0.0",
+  "description": "REST API for family health record",
+  "main": "index.js",
+  "scripts": {
+    "start": " nodemon index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.1"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.4.1"
+  }
+}
