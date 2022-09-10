@@ -3,11 +3,11 @@ const User = db.user;
 
 exports.postuserDetails = async (req, res) => {
   const userDetails = {
-    userId: req.body.userId,
+    // firebase_id: req.body.firebase_id,
+    familyFirebaseId: req.body.familyFirebaseId,
     name: req.body.name,
     age: req.body.age,
     gender: req.body.gender,
-    address: req.body.address,
     dateOfBirth: req.body.dateOfBirth,
   };
   await User.create(userDetails)
