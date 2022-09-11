@@ -2,10 +2,12 @@ const express = require("express");
 const app = express();
 const { sequelize } = require("./models");
 const db = require("./models");
+const cors = require("cors");
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const PORT = 5000;
-db.sequelize.sync().then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, async () => {
     console.log(`server is running at ${PORT}`);
     try {

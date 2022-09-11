@@ -6,7 +6,6 @@ exports.postuserDetails = async (req, res) => {
     // firebase_id: req.body.firebase_id,
     familyFirebaseId: req.body.familyFirebaseId,
     name: req.body.name,
-    age: req.body.age,
     gender: req.body.gender,
     dateOfBirth: req.body.dateOfBirth,
   };
@@ -20,9 +19,24 @@ exports.postuserDetails = async (req, res) => {
 };
 
 exports.getAlluser = async (req, res) => {
-  await User.findAll()
+  await User.findAll({
+    include: ["family"],
+  })
     .then((response) => {
       res.status(200).json({ response: response });
+    })
+    .catch((error) => {
+      res.status(500).json({ message: error });
+    });
+};
+exports.getOneuser = async (req, res) => {
+  const id = req.params.id;
+  await User.findOne({
+    where: { userId: id },
+    include: ["family"],
+  })
+    .then((response) => {
+      res.status(200).json({ data: response });
     })
     .catch((error) => {
       res.status(500).json({ message: error });

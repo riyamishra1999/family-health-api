@@ -46,6 +46,20 @@ exports.postFamilyDetails = async (req, res) => {
     });
 };
 
+exports.getFamilyByID = async (req, res) => {
+  const id = req.params.id;
+  await Family.findOne({
+    where: { firebase_id: id },
+    include: ["users"],
+  })
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch((error) => {
+      res.status(500).json(error);
+    });
+};
+
 exports.getAllfamily = async (req, res) => {
   await Family.findAll({
     include: ["users"],

@@ -18,13 +18,6 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true,
       },
     },
-    age: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-    },
     gender: {
       type: DataTypes.STRING,
       allowNull: false,
