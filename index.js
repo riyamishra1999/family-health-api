@@ -5,7 +5,7 @@ const db = require("./models");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const PORT = 5000;
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync().then(() => {
   app.listen(PORT, async () => {
     console.log(`server is running at ${PORT}`);
     try {
