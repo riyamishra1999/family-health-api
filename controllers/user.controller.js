@@ -8,6 +8,7 @@ exports.postuserDetails = async (req, res) => {
     name: req.body.name,
     gender: req.body.gender,
     dateOfBirth: req.body.dateOfBirth,
+    relation: req.body.relation,
   };
   await User.create(userDetails)
     .then((response) => {
