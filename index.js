@@ -28,8 +28,8 @@ app.use("/medicine", medicineRoutes);
 const familyRoutes = require("./routes/family.route");
 app.use("/family", familyRoutes);
 
-const diseaseRoutes = require("./routes/disease.route");
-app.use("/disease", diseaseRoutes);
+const diagnosisRoutes = require("./routes/diagnosis.route");
+app.use("/diagnosis", diagnosisRoutes);
 
 const reportRoutes = require("./routes/report.route");
 app.use("/report", reportRoutes);

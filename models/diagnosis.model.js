@@ -2,20 +2,34 @@ const { UUIDV4 } = require("sequelize");
 const { sequelize } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  const Disease = sequelize.define("Disease", {
-    diseaseId: {
+  const Diagnosis = sequelize.define("Diagnosis", {
+    diagnosisId: {
       type: DataTypes.UUID,
       defaultValue: UUIDV4,
       primaryKey: true,
     },
-    duration: {
+    date: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true,
       },
     },
-    isSurgical: {
+    followupDate: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    tags: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    remarks: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -23,5 +37,5 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   });
-  return Disease;
+  return Diagnosis;
 };
