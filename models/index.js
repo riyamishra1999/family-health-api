@@ -49,12 +49,11 @@ db.family = require("./family.model")(sequelize, Sequelize);
 db.report = require("./report.model")(sequelize, Sequelize);
 db.diagnosis = require("./diagnosis.model")(sequelize, Sequelize);
 
-db.family.hasMany(db.user, { as: "users", onDelete: "cascade" });
+db.family.hasMany(db.user, { as: "users" });
 db.user.belongsTo(db.family, { as: "family" });
 
 db.user.hasMany(db.diagnosis, {
   as: "diagnosis",
-  onDelete: "cascade",
 });
 
 db.diagnosis.belongsTo(db.user, {
@@ -65,6 +64,6 @@ db.diagnosis.hasMany(db.report, {
   as: "reports",
 });
 db.report.belongsTo(db.diagnosis, {
-  as: "diagnosisReport",
+  as: "diagnoses",
 });
 module.exports = db;
