@@ -50,6 +50,21 @@ exports.getallreport = async (req, res) => {
       res.status(500).json({ message: error });
     });
 };
+
+exports.getReportByDiagnosisId = async (req, res) => {
+  const id = req.params.id;
+  await Report.findAll({
+    where: { diagnosesDiagnosisId: id },
+    order: [["createdAt", "ASC"]],
+  })
+    .then((response) => {
+      res.status(200).json({ response: response });
+    })
+    .catch((error) => {
+      res.status(500).json({ response: error });
+    });
+};
+
 exports.updatereport = async (req, res) => {
   const id = req.params.id;
   await Report.update(req.body, { where: { ReportId: id } })

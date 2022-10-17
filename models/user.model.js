@@ -11,6 +11,13 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: UUIDV4,
       primaryKey: true,
     },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
