@@ -17,7 +17,7 @@ app.use(
   })
 );
 
-db.sequelize.sync().then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, async () => {
     console.log(`server is running at ${PORT}`);
     try {

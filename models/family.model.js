@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    houseNumber: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     firebase_id: {
       type: DataTypes.STRING,
       primaryKey: true,
