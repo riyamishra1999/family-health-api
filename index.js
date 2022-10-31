@@ -8,7 +8,7 @@ app.options("*", cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const PORT = 5000;
-
+global.__basedir = __dirname + "/.";
 const fileUpload = require("express-fileupload");
 app.use(
   fileUpload({
@@ -43,3 +43,6 @@ app.use("/diagnosis", diagnosisRoutes);
 
 const reportRoutes = require("./routes/report.route");
 app.use("/report", reportRoutes);
+
+const formRoutes = require("./routes/download.route");
+app.use("/download", formRoutes);
