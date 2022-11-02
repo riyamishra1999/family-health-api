@@ -1,6 +1,7 @@
 const db = require("../models");
 const Diagnosis = db.diagnosis;
 const Reports = db.reports;
+const { Op } = require("sequelize");
 exports.postdiagnosisDetails = async (req, res) => {
   await Diagnosis.create(req.body)
     .then((response) => {
@@ -56,6 +57,28 @@ exports.updateDiagnosis = async (req, res) => {
   await Diagnosis.update(req.body, { where: { diseaseId: id } })
     .then((response) => {
       res.status(200).send("Updated successfully");
+    })
+    .catch((error) => {
+      res.status(500).json({ message: error });
+    });
+};
+
+exports.sortDiagnosis = async (req, res) => {
+  const id = req.params.id;
+  const fromDate = new Date(req.query.fromDate);
+  const toDate = new Date(req.query.toDate);
+  const sortDisease = req.query?.sortDisease;
+  await Diagnosis.findAll({
+    where: {
+      usersUserId: id,
+      tags: { [Op.like]: "%" + sortDisease + "%" },
+      date: { [Op.between]: [fromDate, toDate] },
+    },
+    include: ["reports"],
+    order: [["date", "DESC"]],
+  })
+    .then((response) => {
+      res.status(200).json({ response: response });
     })
     .catch((error) => {
       res.status(500).json({ message: error });
